@@ -44,7 +44,9 @@ notch_width(q2, q4, N) = 1.58 * (q4-q2)/sqrt(N)
         # compute quantiles
         q1, q2, q3, q4, q5 = quantile(values, Base.range(0, stop = 1, length = 5))
         if isa(whiskerpercentile, Array)
+            println("whiskers")
             q1, q5 = quantile(values, whiskerpercentile)
+            println(q1, q5)
         end
 
         # notch
