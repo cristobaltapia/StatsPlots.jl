@@ -48,6 +48,7 @@ notch_width(q2, q4, N) = 1.58 * (q4-q2)/sqrt(N)
             q1, q5 = quantile(values, whiskerpercentile)
             println(q1, q5)
         end
+        println(q1, q5)
 
         # notch
         n = notch_width(q2, q4, length(values))
