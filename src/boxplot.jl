@@ -12,8 +12,12 @@ notch_width(q2, q4, N) = 1.58 * (q4-q2)/sqrt(N)
     notch = false,
     range = 1.5,
     outliers = true,
+    whiskerpercentile = false,
     whisker_width = :half
 )
+    println("----------------------")
+    println("Test")
+    println("----------------------")
     # if only y is provided, then x will be UnitRange 1:size(y,2)
     if typeof(x) <: AbstractRange
         if step(x) == first(x) == 1
@@ -39,6 +43,9 @@ notch_width(q2, q4, N) = 1.58 * (q4-q2)/sqrt(N)
 
         # compute quantiles
         q1, q2, q3, q4, q5 = quantile(values, Base.range(0, stop = 1, length = 5))
+        if isa(whiskerpercentile, Array)
+            q1, q5 = quantile(values, whiskerpercentile)
+        end
 
         # notch
         n = notch_width(q2, q4, length(values))
