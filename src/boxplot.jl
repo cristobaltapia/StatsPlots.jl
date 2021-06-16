@@ -23,9 +23,6 @@ notch_width(q2, q4, N) = 1.58 * (q4-q2)/sqrt(N)
             x = [getindex(x, plotattributes[:series_plotindex])]
         end
     end
-    if !whiskerpercentile
-        range = 0
-    end
     xsegs, ysegs = Segments(), Segments()
     texts = String[]
     glabels = sort(collect(unique(x)))
@@ -44,6 +41,7 @@ notch_width(q2, q4, N) = 1.58 * (q4-q2)/sqrt(N)
         # compute quantiles
         q1, q2, q3, q4, q5 = quantile(values, Base.range(0, stop = 1, length = 5))
         if isa(whiskerpercentile, Array)
+            range = 0
             q1, q5 = quantile(values, whiskerpercentile)
         end
 
